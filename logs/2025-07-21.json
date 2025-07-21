@@ -22,8 +22,26 @@
     ]
   },
   "done": {
-    "Morning": [true, true, true, true, true, true, true, false, true],
-    "Evening": [false, false, false, false, false, false, false]
+    "Morning": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "Evening": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
   },
   "plan": {
     "05": "Morning_Routine",
