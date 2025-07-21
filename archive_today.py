@@ -21,7 +21,7 @@ def git_commit_and_push(filename):
     try:
         subprocess.run(["git", "add", filename], check=True)
         subprocess.run(["git", "commit", "-m", f"archive: add {filename}"], check=True)
-        subprocess.run(["git", "push", "origin", "master"], check=True)
+        subprocess.run(["git", "push", "origin", "main"], check=True)
         print("[✓] Pushed to GitHub.")
     except subprocess.CalledProcessError as e:
         print(f"[x] Git error: {e}")
