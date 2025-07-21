@@ -22,26 +22,8 @@
     ]
   },
   "done": {
-    "Morning": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      false,
-      true
-    ],
-    "Evening": [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ]
+    "Morning": [true, true, true, true, true, true, true, false, true],
+    "Evening": [true, true, true, false, false, true, false]
   },
   "plan": {
     "05": "Morning_Routine",
@@ -69,7 +51,7 @@
     "focus": [
       {
         "text": "Genetic_Algorithm",
-        "done": false
+        "done": true
       },
       {
         "text": "t-distribution",
