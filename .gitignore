@@ -1,0 +1,32 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# VS Code or IDE settings
+.vscode/
+.idea/
+
+# Environment
+.venv/
+.env
+.env.*
+
+# Compiled or temporary files
+*.log
+*.lock
+*.tmp
+
+# Keep routine.json but ignore all others
+*.json
+!routine.json
+!logs/*.json
+
+# Python version manager
+.python-version
+
+# macOS / Linux
+.DS_Store
+
+test/
