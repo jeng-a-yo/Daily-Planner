@@ -21,6 +21,7 @@ __pycache__/
 # Keep routine.json but ignore all others
 *.json
 !routine.json
+!food_db.json
 !logs/*.json
 
 # Python version manager
