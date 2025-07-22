@@ -165,7 +165,6 @@ def search_food_matches(food_db, query):
     query = query.lower()
     return [(i+1, name) for i, name in enumerate(food_db) if query in name]
 
-
 def normalize_meal(meal):
     meal = meal.lower()
     if meal.startswith("b"):
@@ -176,7 +175,6 @@ def normalize_meal(meal):
         return "dinner"
     else:
         raise ValueError(f"Invalid meal: {meal}")
-
 
 def add_food(meal, food_name, weight):
     try:
@@ -208,14 +206,16 @@ def add_food(meal, food_name, weight):
             print(f"[✓] Auto-selected match: {food_key}")
         else:
             print(f"[?] Multiple matches found for '{food_name}'. Select one:")
+            matched_food = list(dict(matches).values())
+            matches = [(i + 1, matched_food[i]) for i in range(len(matched_food))]
             for i, name in matches:
                 print(f"  {i}. {name}")
             try:
                 selected = int(input("Enter number: "))
-                if not 1 <= selected <= len(matches):
+                food_key = dict(matches).get(selected)
+                if not food_key:
                     print("[x] Invalid selection.")
                     return
-                food_key = matches[selected - 1][1]
             except ValueError:
                 print("[x] Invalid input.")
                 return
@@ -226,14 +226,15 @@ def add_food(meal, food_name, weight):
     record = {
         "name": food_key,
         "weight": weight,
-        "protein": round(entry["protein"] * factor, 2),
-        "fat": round(entry["fat"] * factor, 2),
-        "carbon": round(entry["carbon"] * factor, 2)
+        "protein": round(entry.get("protein", 0.0) * factor, 2),
+        "fat": round(entry.get("fat", 0.0) * factor, 2),
+        "carbon": round(entry.get("carbon", 0.0) * factor, 2)
     }
 
     data["food"][meal].append(record)
     write_json(TODAY_FILE, data)
-    print(f"[+] Logged {weight}g of '{food_name}' in {meal}")
+    print(f"[+] Logged {weight:.1f}g of '{food_key}' in {meal}")
+
 
 
 

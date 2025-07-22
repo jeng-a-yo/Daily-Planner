@@ -1,8 +1,8 @@
 # File: planner/display.py
 from .file_utils import read_json
-from .constants import TODAY_FILE
+from .constants import TODAY_FILE, USER_PROFILE_FILE
 from wcwidth import wcswidth
-
+from tqdm import tqdm
 
 def show_routine():
     data = read_json(TODAY_FILE)
@@ -45,16 +45,45 @@ def show_exercise():
     for line in get_exercise_lines(data)[1:]:
         print(line)
 
+def make_bar(current, total, width=10, label=""):
+    ratio = min(current / total, 1.0) if total > 0 else 0
+    filled = int(ratio * width)
+    empty = width - filled
+    bar = "#" * filled + "-" * empty
+    percent = int(ratio * 100)
+
+    line1 = f"{label:<8} |{bar}|"
+    line2 = f"         {percent:>3}% ({current:.1f}/{total:.1f}g)"
+    return [line1, line2]
+
+
+
 def get_routine_lines(data):
     lines = ["[Checklist] Daily Routine:"]
     for section, items in data["tasks"].items():
-        lines.append("")  # add spacing between sections
+        done_list = data["done"][section]
+        count_done = sum(done_list)
+        total = len(done_list)
+
+        lines.append("")  # spacing between sections
         lines.append(f"[{section}]")
         for i, item in enumerate(items):
-            status = "[✓]" if data["done"][section][i] else "[ ]"
+            status = "[✓]" if done_list[i] else "[ ]"
             lines.append(f"{i+1:2}. {status} {item}")
-    return lines
+        
+        # Add separator before progress bar
+        lines.append("    " + "=" * 16)
 
+        # Use same bar format as food section
+        filled = int(count_done / total * 10) if total > 0 else 0
+        empty = 10 - filled
+        bar = "#" * filled + "-" * empty
+        percent = int(count_done / total * 100) if total > 0 else 0
+        progress_text_1 = f"Progress |{bar}|"
+        progress_text_2 = f"          {percent}% ({count_done:.1f}/{total:.1f})"
+        lines.append(progress_text_1)
+        lines.append(progress_text_2)
+    return lines
 
 def get_plan_lines(data):
     lines = ["[Schedule] Daily Planning:"]
@@ -78,8 +107,15 @@ def get_goals_lines(data):
         lines.append(f"{i}. {icon} {g['text']}")
     return lines
 
+
 def get_food_lines(data):
     lines = ["[Food] Meals:"]
+    profile = read_json(USER_PROFILE_FILE)
+    weight = profile.get("weight", 0)
+    target_p = profile.get("protein_factor", 0) * weight
+    target_f = profile.get("fat_factor", 0) * weight
+    target_c = profile.get("carbon_factor", 0) * weight
+
     total_protein = 0.0
     total_fat = 0.0
     total_carbon = 0.0
@@ -96,24 +132,37 @@ def get_food_lines(data):
             for i, food in enumerate(items, 1):
                 name = food.get("name", str(food))
                 lines.append(f"    {i}. {name}")
-
                 meal_protein += food.get("protein", 0.0)
                 meal_fat += food.get("fat", 0.0)
                 meal_carbon += food.get("carbon", 0.0)
         else:
             lines.append("    (none)")
 
-        # Accumulate for daily total
         total_protein += meal_protein
         total_fat += meal_fat
         total_carbon += meal_carbon
 
-    # Add daily total summary
+    # Add total
     lines.append("")
     lines.append("  Total:")
     lines.append(f"    Protein: {total_protein:.1f}g")
     lines.append(f"    Fat: {total_fat:.1f}g")
     lines.append(f"    Carbon: {total_carbon:.1f}g")
+
+    # Add separator before progress bar
+    lines.append(" " * ((35//2) - 12) + "=" * 24 + (" " * ((35//2) - 12)))
+
+    # Add progress bars
+    lines.append("")
+    lines.append("  Progress:")
+    for label, val, target in [
+        ("Protein", total_protein, target_p),
+        ("Fat", total_fat, target_f),
+        ("Carbon", total_carbon, target_c)
+    ]:
+        bar_lines = make_bar(val, target, label=label)
+        lines.extend([f"    {line}" for line in bar_lines])
+
     return lines
 
 

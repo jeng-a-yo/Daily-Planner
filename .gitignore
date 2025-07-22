@@ -22,6 +22,7 @@ __pycache__/
 *.json
 !routine.json
 !food_db.json
+!user_profile.json
 !logs/*.json
 
 # Python version manager
