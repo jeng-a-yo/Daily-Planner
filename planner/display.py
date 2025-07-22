@@ -1,6 +1,8 @@
 # File: planner/display.py
 from .file_utils import read_json
 from .constants import TODAY_FILE
+from wcwidth import wcswidth
+
 
 def show_routine():
     data = read_json(TODAY_FILE)
@@ -31,6 +33,17 @@ def show_goals():
         icon = "[✓]" if g["done"] else "[ ]"
         print(f"{i}. {icon} {g['text']}")
 
+def show_food():
+    data = read_json(TODAY_FILE)
+    print("\n[Food] Meals:")
+    for line in get_food_lines(data)[1:]:
+        print(line)
+
+def show_exercise():
+    data = read_json(TODAY_FILE)
+    print("\n[Exercise] Activity:")
+    for line in get_exercise_lines(data)[1:]:
+        print(line)
 
 def get_routine_lines(data):
     lines = ["[Checklist] Daily Routine:"]
@@ -65,25 +78,92 @@ def get_goals_lines(data):
         lines.append(f"{i}. {icon} {g['text']}")
     return lines
 
+def get_food_lines(data):
+    lines = ["[Food] Meals:"]
+    total_protein = 0.0
+    total_fat = 0.0
+    total_carbon = 0.0
+
+    for meal in ["breakfast", "lunch", "dinner"]:
+        items = data.get("food", {}).get(meal, [])
+        lines.append(f"  {meal.capitalize()}:")
+
+        meal_protein = 0.0
+        meal_fat = 0.0
+        meal_carbon = 0.0
+
+        if items:
+            for i, food in enumerate(items, 1):
+                name = food.get("name", str(food))
+                lines.append(f"    {i}. {name}")
+
+                meal_protein += food.get("protein", 0.0)
+                meal_fat += food.get("fat", 0.0)
+                meal_carbon += food.get("carbon", 0.0)
+        else:
+            lines.append("    (none)")
+
+        # Accumulate for daily total
+        total_protein += meal_protein
+        total_fat += meal_fat
+        total_carbon += meal_carbon
+
+    # Add daily total summary
+    lines.append("")
+    lines.append("  Total:")
+    lines.append(f"    Protein: {total_protein:.1f}g")
+    lines.append(f"    Fat: {total_fat:.1f}g")
+    lines.append(f"    Carbon: {total_carbon:.1f}g")
+    return lines
+
+
+
+def get_exercise_lines(data):
+    lines = ["[Exercise] Activity:"]
+    for typ in ["exercising", "workout"]:
+        items = data.get("exercise", {}).get(typ, [])
+        lines.append(f"  {typ.capitalize()}:")
+        if items:
+            for i, act in enumerate(items, 1):
+                if isinstance(act, dict):
+                    name = act.get("name") or str(act)
+                    lines.append(f"    {i}. {name}")
+                else:
+                    lines.append(f"    {i}. {act}")
+        else:
+            # Pad with space so column rendering remains intact
+            lines.append("    (none)")
+    return lines
+
+def pad_display(s, width):
+    display_len = wcswidth(s)
+    padding = max(0, width - display_len)
+    return s + ' ' * padding
+
+
 
 def show_all_columns():
     data = read_json(TODAY_FILE)
     col1 = get_routine_lines(data)
     col2 = get_plan_lines(data)
     col3 = get_goals_lines(data)
+    col4 = get_food_lines(data)
+    col5 = get_exercise_lines(data)
 
     # Normalize line lengths
-    max_lines = max(len(col1), len(col2), len(col3))
-    col1 += [''] * (max_lines - len(col1))
-    col2 += [''] * (max_lines - len(col2))
-    col3 += [''] * (max_lines - len(col3))
+    max_lines = max(len(col1), len(col2), len(col3), len(col4), len(col5))
+    col1 += [' '] * (max_lines - len(col1))
+    col2 += [' '] * (max_lines - len(col2))
+    col3 += [' '] * (max_lines - len(col3))
+    col4 += [' '] * (max_lines - len(col4))
+    col5 += [' '] * (max_lines - len(col5))
 
     # Define column widths
-    width1 = 30
-    width2 = 30
-    width3 = 30
+    widths = [30, 30, 30, 35, 30]
 
-    # Print side-by-side
-    for l1, l2, l3 in zip(col1, col2, col3):
-        print(f"{l1:<{width1}} | {l2:<{width2}} | {l3:<{width3}}")
+    # Print side-by-side with properly padded lines
+    for l1, l2, l3, l4, l5 in zip(col1, col2, col3, col4, col5):
+        print(f"{pad_display(l1, widths[0])} | {pad_display(l2, widths[1])} | {pad_display(l3, widths[2])} | {pad_display(l4, widths[3])} | {pad_display(l5, widths[4])}")
+
+
 

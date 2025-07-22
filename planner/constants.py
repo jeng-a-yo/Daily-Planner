@@ -1,7 +1,14 @@
 from datetime import date
 import os
 
+# Directory paths
 DATA_DIR = "logs"
-ROUTINE_FILE = "routine.json"
+DEFAULTS_DIR = "defaults"
+
+# Default template files
+ROUTINE_FILE = os.path.join(DEFAULTS_DIR, "routine.json")
+FOOD_DB_FILE = os.path.join(DEFAULTS_DIR, "food_db.json")
+
+# Today's data file
 TODAY_FILENAME = f"{date.today()}.json"
-TODAY_FILE = TODAY_FILENAME  # write to current directory
+TODAY_FILE = TODAY_FILENAME

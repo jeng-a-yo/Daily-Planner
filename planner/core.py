@@ -1,4 +1,4 @@
-from .constants import ROUTINE_FILE, TODAY_FILE, DATA_DIR
+from .constants import ROUTINE_FILE, TODAY_FILE, DATA_DIR, FOOD_DB_FILE
 from .file_utils import read_json, write_json
 import os
 from datetime import date
@@ -18,6 +18,15 @@ def init_day():
         "goals": {
             "focus": [],
             "todo": []
+        },
+        "food": {
+            "breakfast": [],
+            "lunch": [],
+            "dinner": []
+        },
+        "exercise": {
+            "exercising": [],
+            "workout": []
         }
     }
 
@@ -27,7 +36,8 @@ def init_day():
         data["goals"]["todo"].append({"text": "laundry", "done": False})
 
     write_json(TODAY_FILE, data)
-    print("[✓] Initialized with routine and empty goals.")
+    print("[✓] Initialized with routine, empty goals, food and exercise trackers.")
+
 
 def match_one(entries, key_func, query):
     matches = [(i, e) for i, e in enumerate(entries) if query.lower() in key_func(e).lower()]
@@ -151,6 +161,110 @@ def list_goals(section=None, done=None):
                 results.append((sec, g))
     return results
 
+def search_food_matches(food_db, query):
+    query = query.lower()
+    return [(i+1, name) for i, name in enumerate(food_db) if query in name]
+
+
+def normalize_meal(meal):
+    meal = meal.lower()
+    if meal.startswith("b"):
+        return "breakfast"
+    elif meal.startswith("l"):
+        return "lunch"
+    elif meal.startswith("d"):
+        return "dinner"
+    else:
+        raise ValueError(f"Invalid meal: {meal}")
+
+
+def add_food(meal, food_name, weight):
+    try:
+        meal = normalize_meal(meal)
+    except ValueError as e:
+        print(f"[x] {e}")
+        return
+
+    try:
+        weight = float(weight)
+        if weight <= 0:
+            raise ValueError
+    except ValueError:
+        print(f"[x] Invalid weight: {weight}. Use a positive number.")
+        return
+
+    data = read_json(TODAY_FILE)
+    food_db = read_json(FOOD_DB_FILE) if os.path.exists(FOOD_DB_FILE) else {}
+    food_key = food_name.lower()
+
+    if food_key not in food_db:
+        matches = search_food_matches(food_db, food_key)
+        if not matches:
+            print(f"[!] '{food_name}' not found in food_db.json.")
+            return
+
+        if len(matches) == 1:
+            food_key = matches[0][1]
+            print(f"[✓] Auto-selected match: {food_key}")
+        else:
+            print(f"[?] Multiple matches found for '{food_name}'. Select one:")
+            for i, name in matches:
+                print(f"  {i}. {name}")
+            try:
+                selected = int(input("Enter number: "))
+                if not 1 <= selected <= len(matches):
+                    print("[x] Invalid selection.")
+                    return
+                food_key = matches[selected - 1][1]
+            except ValueError:
+                print("[x] Invalid input.")
+                return
+
+    # Compute actual nutrients based on weight
+    entry = food_db[food_key]
+    factor = weight / 100.0
+    record = {
+        "name": food_key,
+        "weight": weight,
+        "protein": round(entry["protein"] * factor, 2),
+        "fat": round(entry["fat"] * factor, 2),
+        "carbon": round(entry["carbon"] * factor, 2)
+    }
+
+    data["food"][meal].append(record)
+    write_json(TODAY_FILE, data)
+    print(f"[+] Logged {weight}g of '{food_name}' in {meal}")
+
+
+
+def add_exercise(category, activity):
+    category = category.lower()
+    if category not in ("exercising", "workout"):
+        print(f"[x] Invalid category: {category}")
+        return
+
+    data = read_json(TODAY_FILE)
+    data["exercise"][category].append(activity)
+    write_json(TODAY_FILE, data)
+    print(f"[+] Logged activity '{activity}' in {category}")
+
+
+def add_food_info(name, protein, fat, carbon):
+    food_db = read_json(FOOD_DB_FILE) if os.path.exists(FOOD_DB_FILE) else {}
+    key = name.lower()
+    if key in food_db:
+        print(f"[!] '{name}' already exists in database.")
+        return
+
+    food_db[key] = {
+        "protein": float(protein),
+        "fat": float(fat),
+        "carbon": float(carbon)
+    }
+    write_json(FOOD_DB_FILE, food_db)
+    print(f"[✓] Added food '{name}' to database.")
+
+
 def show_summary():
     data = read_json(TODAY_FILE)
     total = done = 0
@@ -166,12 +280,15 @@ def show_summary():
 def print_help_message():
     print("""
 Usage Examples:
-  planner init                         Initialize today's planner
-  planner check "meditate"             Check a routine task
-  planner uncheck "meditate"          Uncheck a routine task
-  planner plan "Work on report" 9 11  Plan a task between 9:00 and 11:00
-  planner add-goal f "Deep focus"      Add a focus goal
-  planner check-goal f "focus"         Check a focus goal
-  planner show goals                   Show goals
-  planner show summary                 Show summary of the day
+  planner init                            Initialize today's planner
+  planner check "meditate"                Check a routine task
+  planner uncheck "meditate"             Uncheck a routine task
+  planner plan "Work on report" 9 11     Plan a task between 9:00 and 11:00
+  planner add-goal f "Deep focus"         Add a focus goal
+  planner check-goal f "focus"            Check a focus goal
+  planner show goals                      Show goals
+  planner show summary                    Show summary of the day
+  planner add-food lunch "egg"            Log 'egg' in lunch (requires food_db.json)
+  planner add-food-info "egg" 5 6.3 5.3 0.6  Add 'egg' to database
+  planner add-exercise workout "push-ups" Log push-ups to workout
 """)

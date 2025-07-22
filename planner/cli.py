@@ -4,9 +4,10 @@ import sys
 from .core import (
     init_day, check_by_name, plan_hours, add_goal,
     mark_goal_by_name, show_summary, fuzzy_show_type,
-    print_help_message
+    print_help_message, add_food, add_food_info, add_exercise
 )
-from .display import show_routine, show_plan, show_goals, show_all_columns
+
+from .display import show_routine, show_plan, show_goals, show_food, show_exercise, show_all_columns
 
 # Explicit aliases take precedence
 alias_map = {
@@ -31,14 +32,20 @@ alias_map = {
     "initialize": "init",
     "h": "help",
     "helpme": "help",
-    "?": "help"
+    "?": "help",
+    "af": "add-food",
+    "afi": "add-food-info",
+    "ae": "add-exercise",
+
 }
 
 # Canonical full commands (used for prefix matching)
 canonical_cmds = [
     "interactive", "init", "show", "check", "uncheck",
-    "check-goal", "uncheck-goal", "add-goal", "plan", "help"
+    "check-goal", "uncheck-goal", "add-goal", "plan", "help",
+    "add-food", "add-food-info", "add-exercise"
 ]
+
 
 def resolve_cmd(cmd):
     # First: check exact aliases
@@ -109,6 +116,22 @@ def main():
     goal_uncheck_parser.add_argument("section")
     goal_uncheck_parser.add_argument("text")
 
+    food_parser = subparsers.add_parser("add-food")
+    food_parser.add_argument("meal")
+    food_parser.add_argument("name")
+    food_parser.add_argument("weight", type=float)
+
+    food_info_parser = subparsers.add_parser("add-food-info")
+    food_info_parser.add_argument("name")
+    food_info_parser.add_argument("protein", type=float)
+    food_info_parser.add_argument("fat", type=float)
+    food_info_parser.add_argument("carbon", type=float)
+
+    exercise_parser = subparsers.add_parser("add-exercise")
+    exercise_parser.add_argument("category")
+    exercise_parser.add_argument("activity")
+
+
     help_parser = subparsers.add_parser("help")
     subparsers.add_parser("interactive")
 
@@ -128,6 +151,10 @@ def main():
             show_plan()
         elif args.type == "goals":
             show_goals()
+        elif args.type == "food":
+            show_food()
+        elif args.type == "exercise":
+            show_exercise()
         elif args.type == "summary":
             show_summary()
     elif args.cmd == "plan":
@@ -138,6 +165,13 @@ def main():
         mark_goal_by_name(args.section, args.text, status=True)
     elif args.cmd == "uncheck-goal":
         mark_goal_by_name(args.section, args.text, status=False)
+    elif args.cmd == "add-food":
+        add_food(args.meal, args.name, args.weight)
+    elif args.cmd == "add-food-info":
+        add_food_info(args.name, args.protein, args.fat, args.carbon)
+    elif args.cmd == "add-exercise":
+        add_exercise(args.category, args.activity)
+
     elif args.cmd == "help":
         print_help_message()
     elif args.cmd == "interactive":
