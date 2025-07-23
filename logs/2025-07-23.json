@@ -1,0 +1,121 @@
+{
+  "tasks": {
+    "Morning": [
+      "Fold Quilt",
+      "Fill Water",
+      "Exercising",
+      "Shower",
+      "Brush Teeth",
+      "Skincare",
+      "Take Vitamin",
+      "Meditation",
+      "Breakfast"
+    ],
+    "Evening": [
+      "Workout",
+      "Shower",
+      "Skincare",
+      "Speaking",
+      "Daily Review",
+      "Make a plan",
+      "Reading"
+    ]
+  },
+  "done": {
+    "Morning": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "Evening": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "plan": {
+    "05": "",
+    "06": "",
+    "07": "",
+    "08": "",
+    "09": "",
+    "10": "",
+    "11": "",
+    "12": "",
+    "13": "",
+    "14": "",
+    "15": "",
+    "16": "",
+    "17": "",
+    "18": "",
+    "19": "",
+    "20": "Basketball",
+    "21": "Basketball",
+    "22": "",
+    "23": "",
+    "24": ""
+  },
+  "goals": {
+    "focus": [
+      {
+        "text": "F-distribution",
+        "done": false
+      }
+    ],
+    "todo": [
+      {
+        "text": "laundry",
+        "done": true
+      },
+      {
+        "text": "shopping",
+        "done": false
+      },
+      {
+        "text": "cut_nail",
+        "done": true
+      }
+    ]
+  },
+  "food": {
+    "breakfast": [
+      {
+        "name": "7-11_醬燒里肌鮮蔬三明治",
+        "weight": 121.0,
+        "protein": 13.19,
+        "fat": 12.22,
+        "carbon": 26.38
+      },
+      {
+        "name": "7-11_GEORGIA_滴濾拿鐵咖啡",
+        "weight": 350.0,
+        "protein": 3.89,
+        "fat": 4.9,
+        "carbon": 19.95
+      },
+      {
+        "name": "蛋白飲_馥郁奶茶",
+        "weight": 31.0,
+        "protein": 20.0,
+        "fat": 2.51,
+        "carbon": 6.01
+      }
+    ],
+    "lunch": [],
+    "dinner": []
+  },
+  "exercise": {
+    "exercising": [],
+    "workout": []
+  }
+}
