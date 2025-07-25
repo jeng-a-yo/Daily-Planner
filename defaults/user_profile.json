@@ -1,6 +1,8 @@
 {
   "weight": 73,
+  "tall": 183,
   "protein_factor": 2,
   "fat_factor": 1.0,
-  "carbon_factor": 1.5
+  "carbon_factor": 1.5,
+  "water_factor": 10
 }

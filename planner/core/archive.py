@@ -1,24 +1,34 @@
-import sys
-import os
 import subprocess
 from datetime import datetime
-from planner.constants import TODAY_FILE, DATA_DIR
+import sys
 
 
-def get_today_filepath(date_str=None):
+def get_today_filename(date_str=None):
+    """
+    Get the filename for today's planner or a specific date.
+    Args:
+        date_str (str, optional): Date string in 'YYYY-MM-DD' format.
+    Returns:
+        str: The filename for the planner JSON file.
+    """
     if date_str:
         try:
             datetime.strptime(date_str, "%Y-%m-%d")
-            filename = f"{date_str}.json"
-            filepath = os.path.join(DATA_DIR, filename)
-            return filepath
+            return f"{date_str}.json"
         except ValueError:
             print(f"[x] Invalid date format: {date_str}. Use YYYY-MM-DD.")
             sys.exit(1)
-    return TODAY_FILE
+    return f"{datetime.today().strftime('%Y-%m-%d')}.json"
 
 
 def git_commit_and_push(filename):
+    """
+    Commit and push a file to the main branch using git.
+    Args:
+        filename (str): The file to commit and push.
+    Returns:
+        None
+    """
     try:
         subprocess.run(["git", "add", filename], check=True)
         subprocess.run(
@@ -29,10 +39,3 @@ def git_commit_and_push(filename):
         print("[✓] Pushed to GitHub.")
     except subprocess.CalledProcessError as e:
         print(f"[x] Git error: {e}")
-
-
-if __name__ == "__main__":
-    date_arg = sys.argv[1] if len(sys.argv) > 1 else None
-    today_filename = get_today_filepath(date_arg)
-
-    git_commit_and_push(today_filename)
