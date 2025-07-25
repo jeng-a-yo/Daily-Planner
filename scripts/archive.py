@@ -1,8 +1,8 @@
+from planner.constants import TODAY_FILE, DATA_DIR
 import sys
 import os
 import subprocess
 from datetime import datetime
-from planner.constants import TODAY_FILE, DATA_DIR
 
 
 def get_today_filepath(date_str=None):
