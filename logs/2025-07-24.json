@@ -23,15 +23,15 @@
   },
   "done": {
     "Morning": [
+      true,
+      true,
       false,
       false,
+      true,
+      true,
+      true,
       false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
+      true
     ],
     "Evening": [
       false,
@@ -66,17 +66,88 @@
     "24": ""
   },
   "goals": {
-    "focus": [],
+    "focus": [
+      {
+        "text": "app",
+        "done": false
+      }
+    ],
     "todo": []
   },
   "food": {
-    "breakfast": [],
-    "lunch": [],
-    "dinner": []
+    "breakfast": [
+      {
+        "name": "質立希臘式優格（蜂蜜）",
+        "weight": 104.2,
+        "protein": 4.17,
+        "fat": 5.11,
+        "carbon": 16.36
+      },
+      {
+        "name": "質立希臘式優格（檸檬無加糖）",
+        "weight": 105.0,
+        "protein": 5.67,
+        "fat": 4.09,
+        "carbon": 14.91
+      },
+      {
+        "name": "麥維爾澳洲特級大燕麥片",
+        "weight": 15.3,
+        "protein": 1.3,
+        "fat": 0.9,
+        "carbon": 5.5
+      },
+      {
+        "name": "無加糖濃黑豆漿",
+        "weight": 300.0,
+        "protein": 15.3,
+        "fat": 7.8,
+        "carbon": 9.3
+      },
+      {
+        "name": "綿綿吐司_巧克力吐司",
+        "weight": 93.0,
+        "protein": 7.63,
+        "fat": 7.72,
+        "carbon": 44.36
+      },
+      {
+        "name": "綿綿吐司_無加糖豆漿",
+        "weight": 330.0,
+        "protein": 14.19,
+        "fat": 6.6,
+        "carbon": 2.31
+      },
+      {
+        "name": "綿綿吐司_菲力雞排吐司",
+        "weight": 220.0,
+        "protein": 43.78,
+        "fat": 6.38,
+        "carbon": 36.52
+      }
+    ],
+    "lunch": [
+      {
+        "name": "雞胸肉",
+        "weight": 200.0,
+        "protein": 49.2,
+        "fat": 1.2,
+        "carbon": 3.8
+      }
+    ],
+    "dinner": [
+      {
+        "name": "無加糖濃豆漿",
+        "weight": 375.0,
+        "protein": 19.12,
+        "fat": 9.75,
+        "carbon": 7.88
+      }
+    ]
   },
   "exercise": {
     "exercising": [],
     "workout": []
   },
-  "water": 0
+  "water": 700
 }
