@@ -79,7 +79,7 @@
       },
       {
         "text": "shopping",
-        "done": false
+        "done": true
       },
       {
         "text": "cut_nail",
@@ -111,11 +111,42 @@
         "carbon": 6.01
       }
     ],
-    "lunch": [],
-    "dinner": []
+    "lunch": [
+      {
+        "name": "綿綿吐司_無加糖豆漿",
+        "weight": 330.0,
+        "protein": 14.19,
+        "fat": 6.6,
+        "carbon": 2.31
+      },
+      {
+        "name": "綿綿吐司_菲力雞排吐司",
+        "weight": 220.0,
+        "protein": 43.78,
+        "fat": 6.38,
+        "carbon": 36.52
+      }
+    ],
+    "dinner": [
+      {
+        "name": "全聯_十三香雞胸",
+        "weight": 130.0,
+        "protein": 22.75,
+        "fat": 2.47,
+        "carbon": 5.72
+      },
+      {
+        "name": "蛋",
+        "weight": 106.0,
+        "protein": 13.89,
+        "fat": 9.12,
+        "carbon": 2.54
+      }
+    ]
   },
   "exercise": {
     "exercising": [],
     "workout": []
-  }
+  },
+  "water": 1700
 }
