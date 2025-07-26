@@ -28,7 +28,7 @@
       true,
       true,
       true,
-      false,
+      true,
       true,
       false,
       true
@@ -73,7 +73,7 @@
       },
       {
         "text": "app",
-        "done": false
+        "done": true
       }
     ],
     "todo": [
@@ -94,7 +94,22 @@
       }
     ],
     "lunch": [],
-    "dinner": []
+    "dinner": [
+      {
+        "name": "全聯_大漢嫩豆腐",
+        "weight": 300.0,
+        "protein": 13.8,
+        "fat": 9.0,
+        "carbon": 6.0
+      },
+      {
+        "name": "蛋",
+        "weight": 126.0,
+        "protein": 16.51,
+        "fat": 10.84,
+        "carbon": 3.02
+      }
+    ]
   },
-  "water": 0
+  "water": 1000
 }
