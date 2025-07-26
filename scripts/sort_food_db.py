@@ -1,6 +1,10 @@
-import json
+from daily_planner.constants import FOOD_DB_FILE
 import sys
-from planner.constants import FOOD_DB_FILE
+import os
+import json
+# Ensure project root is in sys.path for absolute imports
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..')))
 
 
 def sort_key(entry, mode):

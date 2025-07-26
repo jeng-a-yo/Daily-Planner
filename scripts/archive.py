@@ -1,8 +1,11 @@
-from planner.constants import TODAY_FILE, DATA_DIR
+from daily_planner.constants import TODAY_FILE, DATA_DIR
+from datetime import datetime
+import subprocess
 import sys
 import os
-import subprocess
-from datetime import datetime
+# Ensure project root is in sys.path for absolute imports
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..')))
 
 
 def get_today_filepath(date_str=None):
