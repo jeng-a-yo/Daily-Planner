@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Planner Web</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>📅 Daily Planner - <span id="date"></span></h1>
+    <div
+      class="date-picker-bar"
+      style="
+        margin: 0 32px 16px 32px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      "
+    >
+      <input type="date" id="datePicker" />
+      <button id="todayBtn">Today</button>
+    </div>
+    <div class="actions">
+      <button id="reloadBtn">🔄 Reload</button>
+      <button id="addTaskBtn">➕ Add Task</button>
+      <button id="addGoalBtn">🎯 Add Goal</button>
+      <button id="addFoodBtn">🍽️ Add Food</button>
+      <button id="addWaterBtn">💧 Add Water</button>
+    </div>
+    <div id="planner-container"></div>
+    <div id="modal" class="modal" style="display: none"></div>
+    <script src="/static/script.js"></script>
+  </body>
+</html>

@@ -32,6 +32,3 @@ __pycache__/
 .DS_Store
 
 test/
-static/
-templates/
-app.py
