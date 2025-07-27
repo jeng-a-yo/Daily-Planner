@@ -71,7 +71,6 @@
   },
   "food": {
     "breakfast": [
-      {},
       {
         "name": "質立希臘式優格（檸檬無加糖）",
         "weight": 105.0,
@@ -99,10 +98,36 @@
         "protein": 15.3,
         "fat": 7.8,
         "carbon": 9.3
+      },
+      {
+        "name": "7-11_薯泥鮮蔬蛋沙拉",
+        "weight": 165.0
       }
     ],
     "lunch": [],
-    "dinner": []
+    "dinner": [      
+    {
+      "name": "7-11_香蒜白酒蛤蠣義大利麵",
+      "weight": 302.0,
+      "protein": 45.0,
+      "fat": 17.52,
+      "carbon": 74.9
+    },
+    {
+      "name": "7-11_薯泥鮮蔬蛋沙拉",
+      "weight": 165.0,
+      "protein": 3.96,
+      "fat": 9.4,
+      "carbon": 13.2
+    },
+    {
+      "name": "全聯美味堂_油雞胸",
+      "weight": 280.0,
+      "protein": 57.4,
+      "fat": 18.76,
+      "carbon": 3.92
+    }
+    ]
   },
   "water": 0
 }
