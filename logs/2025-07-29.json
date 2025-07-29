@@ -23,23 +23,23 @@
   },
   "done": {
     "Morning": [
+      true,
       false,
+      true,
+      true,
+      true,
+      true,
+      true,
       false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
+      true
     ],
     "Evening": [
+      true,
       false,
-      false,
-      false,
-      false,
-      false,
-      false,
+      true,
+      true,
+      true,
+      true,
       false
     ]
   },
@@ -67,12 +67,69 @@
   },
   "goals": {
     "focus": [],
-    "todo": []
+    "todo": [
+      {
+        "text": "laundry",
+        "done": false
+      }
+    ]
   },
   "food": {
-    "breakfast": [],
-    "lunch": [],
-    "dinner": []
+    "breakfast": [
+      {
+        "name": "7-11_醬燒里肌鮮蔬三明治",
+        "weight": 121.0,
+        "protein": 13.19,
+        "fat": 12.22,
+        "carbon": 26.38
+      },
+      {
+        "name": "7_11_拿鐵",
+        "weight": 210.0,
+        "protein": 6.72,
+        "fat": 7.35,
+        "carbon": 9.45
+      }
+    ],
+    "lunch": [
+      {
+        "name": "全聯_義美傳統料理豆腐",
+        "weight": 300.0,
+        "protein": 29.4,
+        "fat": 15.0,
+        "carbon": 4.8
+      },
+      {
+        "name": "蛋",
+        "weight": 103.0,
+        "protein": 13.49,
+        "fat": 8.86,
+        "carbon": 2.47
+      },
+      {
+        "name": "蛋白飲_繽紛野莓",
+        "weight": 31.0,
+        "protein": 20.0,
+        "fat": 2.29,
+        "carbon": 7.01
+      }
+    ],
+    "dinner": [
+      {
+        "name": "7_11_增肌蛋白餐",
+        "weight": 353.0,
+        "protein": 31.06,
+        "fat": 20.12,
+        "carbon": 72.36
+      },
+      {
+        "name": "無加糖濃豆漿",
+        "weight": 375.0,
+        "protein": 19.12,
+        "fat": 9.75,
+        "carbon": 7.88
+      }
+    ]
   },
-  "water": 0
+  "water": 2400
 }
