@@ -77,7 +77,7 @@
       },
       {
         "text": "data_structure_Lec01",
-        "done": false
+        "done": true
       },
       {
         "text": "algorithm_Lec01",
@@ -119,29 +119,29 @@
         "carbon": 3.92
       }
     ],
-    "dinner": [      
-    {
-      "name": "7-11_松露風味蔬菜烘蛋捲餅",
-      "weight": 134.0,
-      "protein": 10.59,
-      "fat": 15.01,
-      "carbon": 28.54
-    },
-    {
-      "name": "7-11_頌丹樂_泰式烤雞冷麵",
-      "weight": 306.0,
-      "protein": 18.97,
-      "fat": 13.46,
-      "carbon": 52.94
-    },
-    {
-      "name": "無加糖濃黑豆漿",
-      "weight": 336.0,
-      "protein": 17.14,
-      "fat": 8.74,
-      "carbon": 10.42
-    }  
-  ]
+    "dinner": [
+      {
+        "name": "7-11_松露風味蔬菜烘蛋捲餅",
+        "weight": 134.0,
+        "protein": 10.59,
+        "fat": 15.01,
+        "carbon": 28.54
+      },
+      {
+        "name": "7-11_頌丹樂_泰式烤雞冷麵",
+        "weight": 306.0,
+        "protein": 18.97,
+        "fat": 13.46,
+        "carbon": 52.94
+      },
+      {
+        "name": "無加糖濃黑豆漿",
+        "weight": 336.0,
+        "protein": 17.14,
+        "fat": 8.74,
+        "carbon": 10.42
+      }
+    ]
   },
   "water": 1200
 }
