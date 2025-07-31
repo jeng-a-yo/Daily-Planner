@@ -1,0 +1,168 @@
+{
+  "tasks": {
+    "Morning": [
+      "Fold Quilt",
+      "Fill Water",
+      "Exercising",
+      "Shower",
+      "Brush Teeth",
+      "Skincare",
+      "Take Vitamin",
+      "Meditation",
+      "Breakfast"
+    ],
+    "Evening": [
+      "Workout",
+      "Shower",
+      "Skincare",
+      "Speaking",
+      "Daily Review",
+      "Make a plan",
+      "Reading"
+    ]
+  },
+  "done": {
+    "Morning": [
+      true,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "Evening": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false
+    ]
+  },
+  "plan": {
+    "05": "Workout",
+    "06": "Morning Routine",
+    "07": "",
+    "08": "algorithm",
+    "09": "",
+    "10": "computer_architecture_2AR",
+    "11": "",
+    "12": "Lunch",
+    "13": "Lunch",
+    "14": "operating_system_2",
+    "15": "operating_system_2",
+    "16": "data_structure_Lec02",
+    "17": "",
+    "18": "",
+    "19": "Dinner",
+    "20": "Dinner",
+    "21": "Night Routine",
+    "22": "Sleep",
+    "23": "",
+    "24": ""
+  },
+  "goals": {
+    "focus": [
+      {
+        "text": "computer_architecture_2AR",
+        "done": false
+      },
+      {
+        "text": "operating_system_2",
+        "done": false
+      },
+      {
+        "text": "data_structure_Lec02",
+        "done": false
+      },
+      {
+        "text": "algorithm",
+        "done": false
+      }
+    ],
+    "todo": []
+  },
+  "food": {
+    "breakfast": [
+      {
+        "name": "麥維爾澳洲特級大燕麥片",
+        "weight": 90.0,
+        "protein": 11.7,
+        "fat": 8.1,
+        "carbon": 49.5
+      },
+      {
+        "name": "蛋白飲_醇黑可可",
+        "weight": 31.0,
+        "protein": 20.61,
+        "fat": 2.51,
+        "carbon": 4.99
+      },
+      {
+        "name": "質立希臘式優格（無加糖）",
+        "weight": 56.7,
+        "protein": 2.27,
+        "fat": 2.84,
+        "carbon": 7.48
+      },
+      {
+        "name": "瑞穗全脂鮮乳",
+        "weight": 400.0,
+        "protein": 12.8,
+        "fat": 14.8,
+        "carbon": 19.2
+      }
+    ],
+    "lunch": [
+      {
+        "name": "7-11_義式烤番茄雞胸時蔬沙拉",
+        "weight": 183.0,
+        "protein": 12.63,
+        "fat": 4.03,
+        "carbon": 19.58
+      },
+      {
+        "name": "全聯_美味堂_油雞胸",
+        "weight": 280.0,
+        "protein": 57.4,
+        "fat": 18.76,
+        "carbon": 3.92
+      }
+    ],
+    "dinner": [
+      {
+        "name": "無加糖濃豆漿",
+        "weight": 375.0,
+        "protein": 19.12,
+        "fat": 9.75,
+        "carbon": 7.88
+      },
+      {
+        "name": "大醬",
+        "weight": 505.0,
+        "protein": 32.7,
+        "fat": 34.7,
+        "carbon": 78.5
+      },
+      {
+        "name": "蛋白飲_靜岡抹茶",
+        "weight": 31.0,
+        "protein": 20.0,
+        "fat": 2.39,
+        "carbon": 5.89
+      },
+      {
+        "name": "7-11_地瓜雞胸肉沙拉",
+        "weight": 152.0,
+        "protein": 10.94,
+        "fat": 4.71,
+        "carbon": 9.88
+      }
+    ]
+  },
+  "water": 200
+}
