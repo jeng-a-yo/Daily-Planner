@@ -1,0 +1,112 @@
+{
+  "tasks": {
+    "Morning": [
+      "Fold Quilt",
+      "Fill Water",
+      "Exercising",
+      "Shower",
+      "Brush Teeth",
+      "Skincare",
+      "Take Vitamin",
+      "Meditation",
+      "Breakfast"
+    ],
+    "Evening": [
+      "Workout",
+      "Shower",
+      "Skincare",
+      "Speaking",
+      "Daily Review",
+      "Make a plan",
+      "Reading"
+    ]
+  },
+  "done": {
+    "Morning": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "Evening": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "plan": {
+    "05": "",
+    "06": "",
+    "07": "",
+    "08": "扯鈴教練培訓",
+    "09": "扯鈴教練培訓",
+    "10": "扯鈴教練培訓",
+    "11": "扯鈴教練培訓",
+    "12": "扯鈴教練培訓",
+    "13": "扯鈴教練培訓",
+    "14": "扯鈴教練培訓",
+    "15": "扯鈴教練培訓",
+    "16": "扯鈴教練培訓",
+    "17": "",
+    "18": "",
+    "19": "",
+    "20": "",
+    "21": "",
+    "22": "",
+    "23": "",
+    "24": ""
+  },
+  "goals": {
+    "focus": [],
+    "todo": [
+      {
+        "text": "laundry",
+        "done": false
+      }
+    ]
+  },
+  "food": {
+    "breakfast": [      
+      {
+      "name": "蛋白飲_靜岡抹茶",
+      "weight": 31.0,
+      "protein": 20.0,
+      "fat": 2.39,
+      "carbon": 5.89
+      },
+      {
+      "name": "7-11_地瓜雞胸肉沙拉",
+      "weight": 152.0,
+      "protein": 10.94,
+      "fat": 4.71,
+      "carbon": 9.88
+      },
+      {
+        "name": "瑞穗全脂鮮乳",
+        "weight": 270.0,
+        "protein": 8.64,
+        "fat": 9.99,
+        "carbon": 12.96
+      },
+      {
+        "name": "麥維爾澳洲特級大燕麥片",
+        "weight": 60.0,
+        "protein": 7.8,
+        "fat": 5.4,
+        "carbon": 33
+      }
+  ],
+    "lunch": [],
+    "dinner": []
+  },
+  "water": 0
+}
